@@ -1,0 +1,242 @@
+[
+  {
+    "name": "All-Season Tent 2P",
+    "imageURL": "https://i.ibb.co/FqmsLxTh/tent-glamping.jpg",
+    "description": "Durable, waterproof tent for 2 people with easy setup.",
+    "price": 150,
+    "quantity": 20,
+    "supplier": "MountainPro Gear",
+    "sold": 5,
+    "addedByEmail": "pritommohajon4545@gmail.com"
+  },
+  {
+    "name": "Family Tent 4P",
+    "imageURL": "https://i.ibb.co/sdt9pKPj/green-tent-set-up-forest.jpg",
+    "description": "Spacious 4-person tent with rainfly and mosquito net.",
+    "price": 220,
+    "quantity": 12,
+    "supplier": "Adventure House",
+    "sold": 2,
+    "addedByEmail": "john@gmail.com"
+  },
+  {
+    "name": "Trekking Backpack 65L",
+    "imageURL": "https://i.ibb.co/p6KTjkFj/josiah-weiss-8sj-Bz-L1-Iy-Mo-unsplash.jpg",
+    "description": "Lightweight, multi-pocket backpack for long hikes.",
+    "price": 120,
+    "quantity": 35,
+    "supplier": "Trail Blazer",
+    "sold": 8,
+    "addedByEmail": "anderson@gmail.com"
+  },
+  {
+    "name": "Hiking Daypack 30L",
+    "imageURL": "https://i.ibb.co/Vpz24hWw/s-b-vonlanthen-D75-5t-WZDQ4-unsplash.jpg",
+    "description": "Compact backpack ideal for day trips and light hikes.",
+    "price": 75,
+    "quantity": 25,
+    "supplier": "Peak Essentials",
+    "sold": 4,
+    "addedByEmail": "pritommohajon4545@gmail.com"
+  },
+  {
+    "name": "LED Camping Lantern",
+    "imageURL": "https://i.ibb.co/NvDtZCS/kuu-lotus-La-Fh-JSxge-Uk-unsplash.jpg",
+    "description": "Rechargeable solar lantern with adjustable brightness.",
+    "price": 35,
+    "quantity": 50,
+    "supplier": "Hike Essentials",
+    "sold": 10,
+    "addedByEmail": "john@gmail.com"
+  },
+  {
+    "name": "Classic Lantern Pro",
+    "imageURL": "https://i.ibb.co/pjrPF36v/hongly-oung-A1-Va4-Ey-ETm-M-unsplash.jpg",
+    "description": "High-lumen, long-lasting camping lantern.",
+    "price": 40,
+    "quantity": 30,
+    "supplier": "LightGear Depot",
+    "sold": 6,
+    "addedByEmail": "anderson@gmail.com"
+  },
+  {
+    "name": "TrailMaster Hiking Boots",
+    "imageURL": "https://i.ibb.co/ksVdMcZh/clay-banks-nj0a29qb-jo-unsplash.jpg",
+    "description": "Waterproof, ankle-high boots for rugged terrain.",
+    "price": 90,
+    "quantity": 15,
+    "supplier": "PeakGear",
+    "sold": 5,
+    "addedByEmail": "vicky@gmail.com"
+  },
+  {
+    "name": "StormGuard Trekking Boots",
+    "imageURL": "https://i.ibb.co/1YfSZsps/tim-foster-w-KMl3pk-Dsjk-unsplash.jpg",
+    "description": "Durable, non-slip boots for mountain trails.",
+    "price": 110,
+    "quantity": 10,
+    "supplier": "MountainPro Gear",
+    "sold": 3,
+    "addedByEmail": "john@gmail.com"
+  },
+  {
+    "name": "Multi-Tool Screwdriver Kit",
+    "imageURL": "https://i.ibb.co/SL16pRx/elena-rouame-9-JU2-CKqtw0-M-unsplash.jpg",
+    "description": "Compact multi-tool with screwdriver, knife, and opener.",
+    "price": 25,
+    "quantity": 40,
+    "supplier": "Gear Depot",
+    "sold": 12,
+    "addedByEmail": "anderson@gmail.com"
+  },
+  {
+    "name": "Heavy Duty Camping Rope",
+    "imageURL": "https://i.ibb.co/BVTBtPRt/robert-zunikoff-yz22gsq-AH0-unsplash.jpg",
+    "description": "10m strong nylon rope for multiple outdoor uses.",
+    "price": 18,
+    "quantity": 60,
+    "supplier": "Trail Blazer",
+    "sold": 20,
+    "addedByEmail": "pritommohajon4545@gmail.com"
+  },
+  {
+    "name": "Insulated Sleeping Bag Mummy Style",
+    "imageURL": "https://i.ibb.co/mVKrJTQz/eb873fc0-075c-4a38-8af7-3e69bf20a204-removebg-preview.png",
+    "description": "All-season insulated sleeping bag for cold nights.",
+    "price": 60,
+    "quantity": 40,
+    "supplier": "Campwise Supplies",
+    "sold": 7,
+    "addedByEmail": "vicky@gmail.com"
+  },
+  {
+    "name": "Ultralight Sleeping Bag",
+    "imageURL": "https://i.ibb.co/WCjr30S/blue-bag-travel.jpg",
+    "description": "Compact, ultra-light sleeping bag ideal for summer camping.",
+    "price": 50,
+    "quantity": 45,
+    "supplier": "Campwise Supplies",
+    "sold": 9,
+    "addedByEmail": "john@gmail.com"
+  },
+  {
+    "name": "Summit Dome Tent 2P",
+    "imageURL": "https://i.ibb.co/FqmsLxTh/tent-glamping.jpg",
+    "description": "Lightweight dome tent for 2 hikers with waterproof fly.",
+    "price": 155,
+    "quantity": 18,
+    "supplier": "SummitGear",
+    "sold": 4,
+    "addedByEmail": "pritommohajon4545@gmail.com"
+  },
+  {
+    "name": "EcoCamp Family Tent 5P",
+    "imageURL": "https://i.ibb.co/sdt9pKPj/green-tent-set-up-forest.jpg",
+    "description": "Eco-friendly spacious 5-person tent with storage pockets.",
+    "price": 240,
+    "quantity": 10,
+    "supplier": "EcoCamp Essentials",
+    "sold": 3,
+    "addedByEmail": "john@gmail.com"
+  },
+  {
+    "name": "AdventurePro Backpack 70L",
+    "imageURL": "https://i.ibb.co/p6KTjkFj/josiah-weiss-8sj-Bz-L1-Iy-Mo-unsplash.jpg",
+    "description": "Heavy-duty backpack with rain cover and hip belt support.",
+    "price": 135,
+    "quantity": 30,
+    "supplier": "Peak Essentials",
+    "sold": 7,
+    "addedByEmail": "anderson@gmail.com"
+  },
+  {
+    "name": "TrailBuddy Daypack 28L",
+    "imageURL": "https://i.ibb.co/Vpz24hWw/s-b-vonlanthen-D75-5t-WZDQ4-unsplash.jpg",
+    "description": "Ultra-light pack for day trips, built-in hydration sleeve.",
+    "price": 65,
+    "quantity": 22,
+    "supplier": "Trail Blazer",
+    "sold": 5,
+    "addedByEmail": "pritommohajon4545@gmail.com"
+  },
+  {
+    "name": "SolarGlow Lantern",
+    "imageURL": "https://i.ibb.co/NvDtZCS/kuu-lotus-La-Fh-JSxge-Uk-unsplash.jpg",
+    "description": "Rechargeable lantern with solar and USB charging.",
+    "price": 38,
+    "quantity": 45,
+    "supplier": "LightTrail",
+    "sold": 9,
+    "addedByEmail": "john@gmail.com"
+  },
+  {
+    "name": "Camping Torch Pro",
+    "imageURL": "https://i.ibb.co/pjrPF36v/hongly-oung-A1-Va4-Ey-ETm-M-unsplash.jpg",
+    "description": "High-powered LED lantern perfect for night camps.",
+    "price": 42,
+    "quantity": 28,
+    "supplier": "BrightPath Gear",
+    "sold": 6,
+    "addedByEmail": "anderson@gmail.com"
+  },
+  {
+    "name": "Alpine Trek Boots",
+    "imageURL": "https://i.ibb.co/ksVdMcZh/clay-banks-nj0a29qb-jo-unsplash.jpg",
+    "description": "Waterproof leather boots ideal for rocky terrain.",
+    "price": 95,
+    "quantity": 14,
+    "supplier": "PeakGear",
+    "sold": 5,
+    "addedByEmail": "vicky@gmail.com"
+  },
+  {
+    "name": "RockRider Hiking Boots",
+    "imageURL": "https://i.ibb.co/1YfSZsps/tim-foster-w-KMl3pk-Dsjk-unsplash.jpg",
+    "description": "Non-slip rubber sole boots for all-season treks.",
+    "price": 105,
+    "quantity": 9,
+    "supplier": "SummitGear",
+    "sold": 3,
+    "addedByEmail": "john@gmail.com"
+  },
+  {
+    "name": "Compact Screwdriver Multi-Tool",
+    "imageURL": "https://i.ibb.co/SL16pRx/elena-rouame-9-JU2-CKqtw0-M-unsplash.jpg",
+    "description": "Foldable multi-tool kit for emergency campsite fixes.",
+    "price": 27,
+    "quantity": 38,
+    "supplier": "GearMaster",
+    "sold": 11,
+    "addedByEmail": "vicky@gmail.com"
+  },
+  {
+    "name": "Climbing Rope Pro 15m",
+    "imageURL": "https://i.ibb.co/BVTBtPRt/robert-zunikoff-yz22gsq-AH0-unsplash.jpg",
+    "description": "Ultra-strong 15-meter nylon rope for camping and climbing.",
+    "price": 20,
+    "quantity": 55,
+    "supplier": "Trail Blazer",
+    "sold": 18,
+    "addedByEmail": "pritommohajon4545@gmail.com"
+  },
+  {
+    "name": "Arctic Trail Sleeping Bag",
+    "imageURL": "https://i.ibb.co/mVKrJTQz/eb873fc0-075c-4a38-8af7-3e69bf20a204-removebg-preview.png",
+    "description": "Thick insulated mummy-style bag for sub-zero conditions.",
+    "price": 70,
+    "quantity": 38,
+    "supplier": "SnowCamp Gear",
+    "sold": 8,
+    "addedByEmail": "vicky@gmail.com"
+  },
+  {
+    "name": "SummerLite Sleeping Bag",
+    "imageURL": "https://i.ibb.co/WCjr30S/blue-bag-travel.jpg",
+    "description": "Lightweight, breathable sleeping bag for warm nights.",
+    "price": 55,
+    "quantity": 43,
+    "supplier": "Campwise Supplies",
+    "sold": 10,
+    "addedByEmail": "john@gmail.com"
+  }
+]
