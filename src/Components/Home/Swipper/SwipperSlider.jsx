@@ -39,7 +39,7 @@ const SwipperSlider = () => {
         <SwiperSlide className="relative w-[280px] md:w-[500px] lg:w-[600px] overflow-hidden">
           <img
             src={slide1}
-            className="w-full min-h-screen md:h-[400px] object-cover contrast-100"
+            className="w-full min-h-screen md:h-[600px] object-cover contrast-100"
             alt="Slide 1"
           />
           {activeIndex === 0 && (
@@ -49,7 +49,7 @@ const SwipperSlider = () => {
               transition={{ duration: 1.4 }}
               className="absolute z-10 flex justify-center items-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
             >
-              <p className="text-6xl xl:text-7xl text-white font-bold text-justify lg:text-center">
+              <p className="text-6xl xl:text-7xl text-white font-bold text-justify lg:text-center font-bebas">
                 <span className="text-[#ed1c24]">Adventure</span> begins where
                 your gear is ready.
               </p>
@@ -59,7 +59,7 @@ const SwipperSlider = () => {
         <SwiperSlide className="relative w-[280px] md:w-[500px] lg:w-[600px] overflow-hidden">
           <img
             src={slide2}
-            className="w-full min-h-screen md:h-[400px] object-cover"
+            className="w-full min-h-screen md:h-[600px] object-cover"
             alt="Slide 2"
           />
           {activeIndex === 1 && (
@@ -69,7 +69,7 @@ const SwipperSlider = () => {
               transition={{ duration: 1.4 }}
               className="absolute z-10 flex justify-center items-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
             >
-              <p className="text-6xl xl:text-7xl text-lime-500 font-bold text-center">
+              <p className="text-6xl xl:text-7xl text-lime-500 font-bold text-center font-bebas">
                 Pack smart, <span className="text-red-600">hike far</span> — let
                 your inventory lead the way
               </p>
@@ -79,7 +79,7 @@ const SwipperSlider = () => {
         <SwiperSlide className="relative w-[280px] md:w-[500px] lg:w-[600px] overflow-hidden">
           <img
             src={slide3}
-            className="w-full min-h-screen md:h-[400px] object-cover"
+            className="w-full min-h-screen md:h-[600px] object-cover"
             alt="Slide 3"
           />
           {activeIndex === 2 && (
@@ -89,7 +89,7 @@ const SwipperSlider = () => {
               transition={{ duration: 1.4 }}
               className="absolute z-10 flex justify-center items-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
             >
-              <p className="text-6xl xl:text-7xl font-bold text-center">
+              <p className="text-6xl xl:text-7xl font-bold text-center font-bebas">
                 <span className="text-red-600">Great journeys</span> begin with
                 the perfect pack.
               </p>
