@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import HomeInventoryItems from "../HomeInventoryItems/HomeInventoryItems";
 
 const InventoryOverview = () => {
   const variant1 = {
@@ -27,7 +28,7 @@ const InventoryOverview = () => {
   const heading = "Your Inventory at a Glance";
 
   return (
-    <div className="mt-5">
+    <div className="mt-4">
       <motion.div
         variants={variant1}
         initial="hidden"
@@ -54,6 +55,7 @@ const InventoryOverview = () => {
           );
         })}
       </motion.div>
+      <HomeInventoryItems />
     </div>
   );
 };

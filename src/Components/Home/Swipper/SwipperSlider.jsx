@@ -4,9 +4,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 import { Navigation, Pagination, EffectCoverflow } from "swiper/modules";
-import slide1 from "../../../../public/Images/slide1.jpg";
-import slide2 from "../../../../public/Images/slide2.jpg";
-import slide3 from "../../../../public/Images/slide3.jpg";
+import slide1 from "/Images/slide1.jpg";
+import slide2 from "/Images/slide2.jpg";
+import slide3 from "/Images/slide3.jpg";
 import { useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
