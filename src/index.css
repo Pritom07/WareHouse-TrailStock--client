@@ -17,3 +17,8 @@ html {
   max-width: 1360px;
   margin: 0 auto;
 }
+
+a.active {
+  color: #000080;
+  text-decoration: underline;
+}

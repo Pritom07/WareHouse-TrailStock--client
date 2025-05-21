@@ -46,7 +46,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-blue-200 h-20 -mt-1 sticky top-0 z-50">
+    <div className="bg-green-300 h-20 -mt-1 sticky top-0 z-50">
       <section className="flex justify-between items-center px-4 md:px-10 h-full">
         <div>
           <img
@@ -63,7 +63,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center">
-          <button className="bg-[#ed1c24] mr-3 lg:mr-0 px-3 py-2 rounded-[5px] text-white font-semibold hover:bg-lime-500 cursor-pointer">
+          <button className="bg-[#ed1c24] mr-3 lg:mr-0 px-3 py-2 rounded-[5px] text-white font-semibold hover:bg-black hover:border-red-600 hover:border-2 cursor-pointer">
             SignOut
           </button>
           <div className="lg:hidden">

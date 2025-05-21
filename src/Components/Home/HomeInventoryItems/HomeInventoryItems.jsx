@@ -24,18 +24,26 @@ const HomeInventoryItems = () => {
     },
   };
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto mt-3.5 px-2.5">
-      <motion.div
-        variants={itemVariant}
-        initial="hidden"
-        whileInView="visible"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
-      >
-        {inventoryItems.map((item) => (
-          <InventoryCard key={item._id} cardItem={item} />
-        ))}
-      </motion.div>
+      {isMounted && (
+        <motion.div
+          variants={itemVariant}
+          initial="hidden"
+          whileInView="visible"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 will-change-transform"
+        >
+          {inventoryItems.map((item) => (
+            <InventoryCard key={item._id} cardItem={item} />
+          ))}
+        </motion.div>
+      )}
     </div>
   );
 };

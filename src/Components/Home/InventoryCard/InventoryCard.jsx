@@ -1,19 +1,12 @@
 import PropTypes from "prop-types";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { FaHandPointRight } from "react-icons/fa";
+import { GrHostMaintenance } from "react-icons/gr";
 
 const InventoryCard = ({ cardItem }) => {
-  const {
-    _id,
-    name,
-    imageURL,
-    description,
-    price,
-    quantity,
-    supplier,
-    sold,
-    addedByEmail,
-  } = cardItem;
+  const { _id, name, imageURL, description, price, quantity, supplier } =
+    cardItem;
 
   const variant = {
     hidden: { opacity: 0, y: 110 },
@@ -24,20 +17,38 @@ const InventoryCard = ({ cardItem }) => {
     },
   };
 
+  const handleStockUpdate = (itemId) => {
+    console.log(itemId);
+  };
+
   return (
     <motion.div variants={variant} className="card bg-base-100 shadow-sm">
       <figure>
         <img src={imageURL} alt="InventoryItems" />
       </figure>
       <div className="card-body font-bebas">
-        <h2 className="card-title text-xl font-bold">{name}</h2>
-        <p>
-          A card component has a figure, a body part, and inside body there are
-          title and actions parts
-        </p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+        <h2 className="card-title text-xl font-bold text-green-600">{name}</h2>
+        <p className="font-bold text-[17px] text-[#0E0E55]">{description}</p>
+        <div className="flex justify-between items-center">
+          <h1 className="text-[15px] font-bold">
+            <FaHandPointRight className="inline mr-2.5" />
+            Price : {price} $
+          </h1>
+          <h1 className="text-[15px] font-bold">
+            <FaHandPointRight className="inline mr-2.5" />
+            Quantity : {quantity}
+          </h1>
         </div>
+        <h1 className="text-[15px] font-bold">
+          <GrHostMaintenance className="inline mr-2.5" />
+          Supplier : {supplier}
+        </h1>
+        <button
+          onClick={() => handleStockUpdate(_id)}
+          className="w-full bg-red-600 hover:bg-green-600 p-2 rounded-[5px] text-white cursor-pointer font-semibold"
+        >
+          Stock Update
+        </button>
       </div>
     </motion.div>
   );

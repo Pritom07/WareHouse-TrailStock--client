@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import HomeInventoryItems from "../HomeInventoryItems/HomeInventoryItems";
+import { useEffect, useState } from "react";
 
 const InventoryOverview = () => {
   const variant1 = {
@@ -27,34 +28,42 @@ const InventoryOverview = () => {
 
   const heading = "Your Inventory at a Glance";
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <div className="mt-4">
-      <motion.div
-        variants={variant1}
-        initial="hidden"
-        whileInView="visible"
-        transition={{ duration: 0.5 }}
-        className="flex flex-wrap justify-center px-3"
-      >
-        {heading.split("").map((char, idx) => {
-          // detect if this char is part of 'Keep Everything in Check'
-          const isRedPart =
-            heading.indexOf("Inventory") <= idx &&
-            idx < heading.indexOf("Inventory") + "Inventory".length;
+      {isMounted && (
+        <motion.div
+          variants={variant1}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex flex-wrap justify-center px-3 will-change-transform"
+        >
+          {heading.split("").map((char, idx) => {
+            // detect if this char is part of 'Inventory'
+            const isRedPart =
+              heading.indexOf("Inventory") <= idx &&
+              idx < heading.indexOf("Inventory") + "Inventory".length;
 
-          return (
-            <motion.span
-              variants={variant2}
-              key={idx}
-              className={`text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bebas font-semibold leading-tight tracking-wide ${
-                isRedPart ? "text-red-600" : "text-gray-800"
-              }`}
-            >
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
-          );
-        })}
-      </motion.div>
+            return (
+              <motion.span
+                variants={variant2}
+                key={idx}
+                className={`text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bebas font-semibold leading-tight tracking-wide will-change-transform ${
+                  isRedPart ? "text-red-600" : "text-gray-800"
+                }`}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            );
+          })}
+        </motion.div>
+      )}
       <HomeInventoryItems />
     </div>
   );
