@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import { FaHandPointRight } from "react-icons/fa";
 import { GrHostMaintenance } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
 
 const InventoryCard = ({ cardItem }) => {
   const { _id, name, imageURL, description, price, quantity, supplier } =
     cardItem;
+  const navigate = useNavigate();
 
   const variant = {
     hidden: { opacity: 0, y: 110 },
@@ -17,9 +19,7 @@ const InventoryCard = ({ cardItem }) => {
     },
   };
 
-  const handleStockUpdate = (itemId) => {
-    console.log(itemId);
-  };
+  const handleStockUpdate = (itemId) => {};
 
   return (
     <motion.div variants={variant} className="card bg-base-100 shadow-sm">

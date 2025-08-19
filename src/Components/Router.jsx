@@ -9,6 +9,9 @@ import ManageInventories from "./ManageInventories/ManageInventories";
 import AddItem from "./AddItem/AddItem";
 import MyItems from "./MyItems/MyItems";
 import Blogs from "./Blogs/Blogs";
+import SignIn from "./Accounts_Related/SignIn/SignIn";
+import SignUp from "./Accounts_Related/SignUp/SignUp";
+import Auth from "./Accounts_Related/Auth/Auth";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +25,10 @@ const router = createBrowserRouter(
         <Route path="/addItem" element={<AddItem />}></Route>
         <Route path="/myItems" element={<MyItems />}></Route>
         <Route path="/blogs" element={<Blogs />}></Route>
+      </Route>
+      <Route path="/auth" element={<Auth />}>
+        <Route path="/auth/signIn" element={<SignIn />}></Route>
+        <Route path="/auth/signUp" element={<SignUp />}></Route>
       </Route>
     </>
   )

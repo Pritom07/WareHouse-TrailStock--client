@@ -5,10 +5,15 @@ import { FaListCheck } from "react-icons/fa6";
 import { FaBlog } from "react-icons/fa";
 import { Sling as Hamburger } from "hamburger-react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSignIn = () => {
+    navigate("/auth/signIn");
+  };
 
   const navItems = (
     <>
@@ -63,8 +68,11 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center">
-          <button className="bg-[#ed1c24] mr-3 lg:mr-0 px-3 py-2 rounded-[5px] text-white font-semibold hover:bg-black hover:border-red-600 hover:border-2 cursor-pointer">
-            SignOut
+          <button
+            onClick={handleSignIn}
+            className="bg-[#ed1c24] mr-3 lg:mr-0 px-3 py-2 rounded-[5px] text-white font-semibold hover:bg-black hover:border-red-600 hover:border-2 cursor-pointer"
+          >
+            SignIn
           </button>
           <div className="lg:hidden">
             <Hamburger duration={1.1} toggled={isOpen} toggle={setOpen} />
