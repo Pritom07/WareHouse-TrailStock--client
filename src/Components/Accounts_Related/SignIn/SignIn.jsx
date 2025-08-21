@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TiStar } from "react-icons/ti";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
@@ -8,9 +8,57 @@ import { IoIosEyeOff } from "react-icons/io";
 import { motion } from "framer-motion";
 import "./SignIn.css";
 import { useState } from "react";
+import useAuth from "../../Context_&_Observer/useAuth";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const SignIn = () => {
   const [seePass, setSeePass] = useState(false);
+  const { signInAccount } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleSignInForm = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const userData = Object.fromEntries(formData.entries());
+    const email = userData.email;
+    const password = userData.password;
+
+    signInAccount(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        const email = user.email;
+        const lastSignInTime = user.metadata.lastSignInTime;
+        const method = "Email_Password";
+        const userData = { email, lastSignInTime, method };
+
+        axios.patch("http://localhost:3000/users", userData).then((res) => {
+          if (res.data.modifiedCount) {
+            toast.success("Thanks for Sign In !", {
+              style: {
+                backgroundColor: "#4CAF50",
+                color: "white",
+              },
+            });
+          }
+          {
+            location.state ? navigate(location.state) : navigate("/");
+          }
+        });
+      })
+      .catch((err) => {
+        toast.error(
+          `${err.message} Please check your email and password. Thanks !`,
+          {
+            style: {
+              backgroundColor: "red",
+              color: "white",
+            },
+          }
+        );
+      });
+  };
 
   return (
     <motion.section
@@ -28,7 +76,7 @@ const SignIn = () => {
               </h1>
             </div>
 
-            <form className="w-full">
+            <form onSubmit={handleSignInForm} className="w-full">
               <fieldset className="fieldset">
                 <label className="label text-base sm:text-lg md:text-xl font-bebas font-semibold text-white lg:mt-2">
                   Email <TiStar className="inline text-sm text-red-600" />
@@ -37,6 +85,8 @@ const SignIn = () => {
                   type="email"
                   className="input focus:outline-none focus:border-blue-600 focus:border-2 w-full font-normal text-sm sm:text-base md:text-lg bg-stone-200"
                   placeholder="Enter Your Email"
+                  name="email"
+                  required
                 />
 
                 <label className="label text-base sm:text-lg md:text-xl font-bebas font-medium text-white mt-2">
@@ -47,6 +97,8 @@ const SignIn = () => {
                     type={seePass ? "text" : "password"}
                     className="input focus:outline-none focus:border-blue-600 focus:border-2 w-full font-normal text-sm sm:text-base md:text-lg bg-stone-200"
                     placeholder="Enter Password"
+                    name="password"
+                    required
                   />
                   <div
                     onClick={() => setSeePass(!seePass)}

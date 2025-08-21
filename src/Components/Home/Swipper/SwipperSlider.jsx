@@ -40,7 +40,7 @@ const SwipperSlider = () => {
         spaceBetween={30}
         modules={[Navigation, Pagination, EffectCoverflow]}
         className="h-full"
-        preloadImages={false}
+        preloadImages={true}
         lazy={true}
         onSlideChange={(swipper) => setActiveindex(swipper.activeIndex)}
       >
