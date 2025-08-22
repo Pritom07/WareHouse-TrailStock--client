@@ -4,14 +4,15 @@ import { TiStar } from "react-icons/ti";
 import { MdOutlineEditNotifications } from "react-icons/md";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuth from "../../Context_&_Observer/useAuth";
+import Swal from "sweetalert2";
+import "./SignUp.css";
 
 const SignUp = () => {
   const [seePass, setSeePass] = useState(false);
-  const { createAccount } = useAuth();
-  const location = useLocation();
+  const { createAccount, userProfileUpdation, verifyEmail } = useAuth();
   const navigate = useNavigate();
 
   const handleSignUpForm = (e) => {
@@ -43,13 +44,28 @@ const SignUp = () => {
         const lastSignInTime = user.metadata.lastSignInTime;
         const creationTime = user.metadata.creationTime;
         const method = "Email_Password";
+        const userObj = { displayName: name };
         const signedUpUser = {
           name,
           userEmail,
+          password,
           lastSignInTime,
           creationTime,
           method,
         };
+
+        userProfileUpdation(userObj)
+          .then(() => {})
+          .catch((err) => {
+            toast.error(err.message, {
+              style: {
+                backgroundColor: "#F43F5E",
+                color: "white",
+              },
+            });
+          });
+
+        verifyEmail().then(() => {});
 
         fetch("http://localhost:3000/users", {
           method: "POST",
@@ -61,16 +77,19 @@ const SignUp = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.insertedId) {
-              toast.success(`Thanks ${name}, for signing Up !`, {
-                style: {
-                  backgroundColor: "#4CAF50",
-                  color: "white",
+              Swal.fire({
+                title: "Welcome in Trailstock !",
+                text: "PLEASE VERIFY YOUR EMAIL . AN EMAIL IS SENT IN YOUR GMAIL ACCOUNT. GOOD LUCK",
+                icon: "success",
+                confirmButtonColor: "#4CAF50",
+                draggable: true,
+                customClass: {
+                  title: "swal-title",
+                  htmlContainer: "swal-text",
                 },
               });
             }
-            {
-              location.state ? navigate(location.state) : navigate("/");
-            }
+            navigate("/auth/signIn");
           });
       })
       .catch((error) => {

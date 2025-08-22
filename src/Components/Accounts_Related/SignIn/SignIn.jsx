@@ -7,16 +7,114 @@ import { IoIosEyeOff } from "react-icons/io";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import "./SignIn.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import useAuth from "../../Context_&_Observer/useAuth";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
   const [seePass, setSeePass] = useState(false);
-  const { signInAccount } = useAuth();
+  const emailRef = useRef();
+  const {
+    signInAccount,
+    signInWithGoogle,
+    signInWithGithub,
+    passwordResetting,
+  } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        const name = user.displayName;
+        const email = user.email;
+        const lastSignInTime = user.metadata.lastSignInTime;
+        const creationTime = user.metadata.creationTime;
+        const method = "Google_Sign_In";
+        const userData = { name, email, lastSignInTime, creationTime, method };
+
+        axios
+          .put("http://localhost:3000/users", userData)
+          .then((res) => {
+            if (res.data.modifiedCount > 0 || res.data.upsertedCount > 0) {
+              toast.success("Welcome for Signing In , Sir !", {
+                style: {
+                  backgroundColor: "#4CAF50",
+                  color: "white",
+                },
+              });
+            }
+            {
+              location?.state ? navigate(location?.state) : navigate("/");
+            }
+          })
+          .catch((err) => {
+            toast.error(err.message);
+          });
+      })
+      .catch((err) => {
+        toast.error(err.message, {
+          style: {
+            backgroundColor: "red",
+            color: "white",
+          },
+        });
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    signInWithGithub(githubProvider)
+      .then((result) => {
+        const user = result.user;
+        const name = user.displayName;
+        const github_User_Id = user.providerData[0].uid;
+        const photoURL = user.photoURL;
+        const lastSignInTime = user.metadata.lastSignInTime;
+        const creationTime = user.metadata.creationTime;
+        const method = "Github_Sign_In";
+        const userData = {
+          name,
+          github_User_Id,
+          photoURL,
+          lastSignInTime,
+          creationTime,
+          method,
+        };
+
+        axios
+          .put("http://localhost:3000/users", userData)
+          .then((res) => {
+            if (res.data.modifiedCount > 0 || res.data.upsertedCount > 0) {
+              toast.success("Welcome for Signing In , Sir !", {
+                style: {
+                  backgroundColor: "#4CAF50",
+                  color: "white",
+                },
+              });
+            }
+            {
+              location?.state ? navigate(location?.state) : navigate("/");
+            }
+          })
+          .catch((err) => {
+            toast.error(err.message);
+          });
+      })
+      .catch((err) => {
+        toast.error(err.message, {
+          style: {
+            backgroundColor: "red",
+            color: "white",
+          },
+        });
+      });
+  };
 
   const handleSignInForm = (e) => {
     e.preventDefault();
@@ -31,25 +129,43 @@ const SignIn = () => {
         const email = user.email;
         const lastSignInTime = user.metadata.lastSignInTime;
         const method = "Email_Password";
-        const userData = { email, lastSignInTime, method };
+        const userData = { email, password, lastSignInTime, method };
 
-        axios.patch("http://localhost:3000/users", userData).then((res) => {
-          if (res.data.modifiedCount) {
-            toast.success("Thanks for Sign In !", {
-              style: {
-                backgroundColor: "#4CAF50",
-                color: "white",
-              },
-            });
-          }
-          {
-            location.state ? navigate(location.state) : navigate("/");
-          }
-        });
+        if (!user.emailVerified) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "EMAIL IS NOT VERIFIED YET! PLEASE CHECK YOUR EMAIL TO VERIFY.",
+            confirmButtonColor: "#4CAF50",
+            customClass: {
+              htmlContainer: "swal-text2",
+            },
+          });
+          return;
+        }
+
+        axios
+          .patch("http://localhost:3000/users", userData)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              toast.success("Welcome for Signing In , Sir !", {
+                style: {
+                  backgroundColor: "#4CAF50",
+                  color: "white",
+                },
+              });
+            }
+            {
+              location?.state ? navigate(location?.state) : navigate("/");
+            }
+          })
+          .catch((err) => {
+            toast.error(err.message);
+          });
       })
       .catch((err) => {
         toast.error(
-          `${err.message} Please check your email and password. Thanks !`,
+          `${err.message} Please check your email and password are corrected or Don't have an account SignUp first. Thanks !`,
           {
             style: {
               backgroundColor: "red",
@@ -57,6 +173,26 @@ const SignIn = () => {
             },
           }
         );
+      });
+  };
+
+  const handleForgotPass = () => {
+    passwordResetting(emailRef.current.value)
+      .then(() => {
+        Swal.fire({
+          title: "An email is sent for resetting your password!",
+          icon: "success",
+          draggable: true,
+          confirmButtonColor: "#4CAF50",
+        });
+      })
+      .catch((err) => {
+        toast.error(err.message, {
+          style: {
+            backgroundColor: "red",
+            color: "white",
+          },
+        });
       });
   };
 
@@ -86,6 +222,7 @@ const SignIn = () => {
                   className="input focus:outline-none focus:border-blue-600 focus:border-2 w-full font-normal text-sm sm:text-base md:text-lg bg-stone-200"
                   placeholder="Enter Your Email"
                   name="email"
+                  ref={emailRef}
                   required
                 />
 
@@ -113,12 +250,15 @@ const SignIn = () => {
                 </div>
 
                 <div className="mt-1">
-                  <a className="link link-hover text-sm sm:text-base font-semibold text-indigo-900">
+                  <a
+                    onClick={handleForgotPass}
+                    className="link link-hover text-sm sm:text-base font-semibold text-indigo-900"
+                  >
                     Forgot password?
                   </a>
                 </div>
 
-                <button className="btn bg-green-600 border-2 border-green-600 text-white text-base sm:text-lg md:text-xl font-medium py-2 sm:py-3 mt-2 rounded-3xl shadow-lg shadow-lime-300 w-full bounce_btn">
+                <button className="btn bg-green-600 border-2 border-green-600 text-white text-base sm:text-lg md:text-xl font-medium py-2 sm:py-3 mt-2 rounded-3xl shadow-lg shadow-lime-300 w-full focus:outline-none bounce_btn">
                   Sign in
                 </button>
               </fieldset>
@@ -138,11 +278,17 @@ const SignIn = () => {
             </div>
 
             <div className="card grid gap-4 sm:gap-4 place-items-center">
-              <button className="text-white text-base sm:text-lg md:text-xl font-semibold bg-blue-600 px-5 sm:px-8 md:px-20 py-2 sm:py-2.5 cursor-pointer rounded-3xl text-nowrap w-full sm:w-auto bounce_btn">
+              <button
+                onClick={handleGoogleSignIn}
+                className="text-white text-base sm:text-lg md:text-xl font-semibold bg-blue-600 px-5 sm:px-8 md:px-20 py-2 sm:py-2.5 cursor-pointer rounded-3xl text-nowrap w-full sm:w-auto bounce_btn"
+              >
                 <FaGoogle className="inline mr-2" />
                 Sign in with Google
               </button>
-              <button className="text-white text-base sm:text-lg md:text-xl font-semibold bg-black px-5 sm:px-8 md:px-20 py-2 sm:py-2.5 cursor-pointer rounded-3xl text-nowrap w-full sm:w-auto bounce_btn">
+              <button
+                onClick={handleGithubSignIn}
+                className="text-white text-base sm:text-lg md:text-xl font-semibold bg-black px-5 sm:px-8 md:px-20 py-2 sm:py-2.5 cursor-pointer rounded-3xl text-nowrap w-full sm:w-auto bounce_btn"
+              >
                 <FaGithub className="inline mr-2" />
                 Sign in with Github
               </button>

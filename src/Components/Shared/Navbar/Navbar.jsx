@@ -6,14 +6,39 @@ import { FaBlog } from "react-icons/fa";
 import { Sling as Hamburger } from "hamburger-react";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../../Context_&_Observer/useAuth";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
+  const { User, signOutUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSignIn = () => {
     navigate("/auth/signIn");
   };
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        toast.success(`Thanks ${User?.displayName} for visiting us !`, {
+          style: {
+            backgroundColor: "#4CAF50",
+            color: "white",
+          },
+        });
+      })
+      .catch((err) => {
+        toast.error(err.message, {
+          style: {
+            backgroundColor: "#F43F5E",
+            color: "white",
+          },
+        });
+      });
+  };
+
+  const name = <>{User?.displayName}</>;
 
   const navItems = (
     <>
@@ -68,12 +93,27 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center">
-          <button
-            onClick={handleSignIn}
-            className="bg-[#ed1c24] mr-3 lg:mr-0 px-3 py-2 rounded-[5px] text-white font-semibold hover:bg-black hover:border-red-600 hover:border-2 cursor-pointer"
-          >
-            SignIn
-          </button>
+          {User ? (
+            <div className="flex lg:flex-col xl:flex-row items-center">
+              <h6 className="hidden lg:block xl:text-xl lg:text-[18px] font-bold text-blue-500 mr-3 hover:scale-110">
+                {name}
+              </h6>
+              <button
+                onClick={handleSignOut}
+                className="bg-[#ed1c24] mr-3 lg:mr-0 px-3 py-2 rounded-[5px] text-white font-semibold hover:bg-black hover:border-red-600 hover:border-2 cursor-pointer lg:mb-1.5 xl:mb-0"
+              >
+                SignOut
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={handleSignIn}
+              className="bg-[#ed1c24] mr-3 lg:mr-0 px-3 py-2 rounded-[5px] text-white font-semibold hover:bg-black hover:border-red-600 hover:border-2 cursor-pointer"
+            >
+              SignIn
+            </button>
+          )}
+
           <div className="lg:hidden">
             <Hamburger duration={1.1} toggled={isOpen} toggle={setOpen} />
           </div>
@@ -85,9 +125,18 @@ const Navbar = () => {
           isOpen ? "top-[90px] opacity-100" : "top-[-400px] opacity-0"
         }`}
       >
-        <ul className="flex flex-col gap-4 bg-blue-100 p-4 rounded-xl shadow-lg cursor-pointer">
-          {navItems}
-        </ul>
+        <div className="bg-blue-100 rounded-xl">
+          <p className="text-center md:text-xl pt-2">
+            Welcome{" "}
+            <span className="text-blue-500 font-semibold">
+              {User?.displayName}
+            </span>
+            . Start your Journey !
+          </p>
+          <ul className="flex flex-col gap-4 p-4 shadow-lg cursor-pointer mt-1">
+            {navItems}
+          </ul>
+        </div>
       </div>
     </div>
   );

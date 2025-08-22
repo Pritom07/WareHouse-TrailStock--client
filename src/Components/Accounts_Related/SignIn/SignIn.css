@@ -1,3 +1,9 @@
 .bounce_btn:active {
   transform: scale(0.9);
 }
+
+.swal-text2 {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}
