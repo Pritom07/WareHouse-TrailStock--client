@@ -1,0 +1,15 @@
+@media only screen and (min-width: 1360px) {
+  .btn_pos {
+    position: absolute;
+    top: 50%;
+    left: 13%;
+  }
+}
+
+@media only screen and (max-width: 1360px) {
+  .btn_pos {
+    position: absolute;
+    top: 48%;
+    left: 13%;
+  }
+}

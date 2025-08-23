@@ -12,6 +12,7 @@ import SignIn from "./Accounts_Related/SignIn/SignIn";
 import SignUp from "./Accounts_Related/SignUp/SignUp";
 import Auth from "./Accounts_Related/Auth/Auth";
 import QnA from "./QnA/QnA";
+import ErrorRoute from "./ErrorRoute/ErrorRoute";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
         <Route path="/auth/signIn" element={<SignIn />}></Route>
         <Route path="/auth/signUp" element={<SignUp />}></Route>
       </Route>
+      <Route path="*" element={<ErrorRoute />}></Route>
     </>
   )
 );
