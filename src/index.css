@@ -1,11 +1,15 @@
 /* Importing google font Bebas Neue */
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
 
+/* Importing google font Great Vibes */
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
 @import "tailwindcss";
 @plugin "daisyui";
 
 @theme {
   --font-bebas: "Merriweather", serif;
+  --font-vibes: "Great Vibes", cursive;
 }
 
 body,

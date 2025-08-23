@@ -66,10 +66,10 @@ const Navbar = () => {
           My Items
         </NavLink>
       </li>
-      <li className="text-[17px] font-semibold">
+      <li className="text-[18px] font-semibold">
         <NavLink to="/blogs">
-          <FaBlog className="inline mr-2 text-xl" />
-          Blogs
+          <FaBlog className="inline mr-2 text-[18px]" />
+          QnA
         </NavLink>
       </li>
     </>
