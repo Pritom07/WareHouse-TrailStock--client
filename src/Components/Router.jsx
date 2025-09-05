@@ -14,6 +14,7 @@ import Auth from "./Accounts_Related/Auth/Auth";
 import QnA from "./QnA/QnA";
 import ErrorRoute from "./ErrorRoute/ErrorRoute";
 import CardDetails from "./Home/CardDetails/CardDetails";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,16 +30,22 @@ const router = createBrowserRouter(
           loader={({ params }) =>
             fetch(`http://localhost:3000/inventoryDetails/${params.id}`)
           }
-          element={<CardDetails />}
+          element={
+            <PrivateRoute>
+              <CardDetails />
+            </PrivateRoute>
+          }
         ></Route>
         <Route path="/addItem" element={<AddItem />}></Route>
         <Route path="/myItems" element={<MyItems />}></Route>
         <Route path="/blogs" element={<QnA />}></Route>
       </Route>
+
       <Route path="/auth" element={<Auth />}>
         <Route path="/auth/signIn" element={<SignIn />}></Route>
         <Route path="/auth/signUp" element={<SignUp />}></Route>
       </Route>
+
       <Route path="*" element={<ErrorRoute />}></Route>
     </>
   )

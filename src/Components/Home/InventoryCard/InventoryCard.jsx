@@ -24,7 +24,10 @@ const InventoryCard = ({ cardItem }) => {
   };
 
   return (
-    <motion.div variants={variant} className="card bg-base-100 shadow-sm">
+    <motion.div
+      variants={variant}
+      className="card bg-base-100 shadow-sm scroll-smooth"
+    >
       <figure>
         <img src={imageURL} alt="InventoryItems" />
       </figure>
