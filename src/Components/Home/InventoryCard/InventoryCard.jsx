@@ -19,7 +19,9 @@ const InventoryCard = ({ cardItem }) => {
     },
   };
 
-  const handleStockUpdate = (itemId) => {};
+  const handleStockUpdate = (itemId) => {
+    navigate(`/inventory/${itemId}`);
+  };
 
   return (
     <motion.div variants={variant} className="card bg-base-100 shadow-sm">

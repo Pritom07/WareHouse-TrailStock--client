@@ -13,6 +13,7 @@ import SignUp from "./Accounts_Related/SignUp/SignUp";
 import Auth from "./Accounts_Related/Auth/Auth";
 import QnA from "./QnA/QnA";
 import ErrorRoute from "./ErrorRoute/ErrorRoute";
+import CardDetails from "./Home/CardDetails/CardDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,13 @@ const router = createBrowserRouter(
         <Route
           path="/manageInventories"
           element={<ManageInventories />}
+        ></Route>
+        <Route
+          path="/inventory/:id"
+          loader={({ params }) =>
+            fetch(`http://localhost:3000/inventoryDetails/${params.id}`)
+          }
+          element={<CardDetails />}
         ></Route>
         <Route path="/addItem" element={<AddItem />}></Route>
         <Route path="/myItems" element={<MyItems />}></Route>

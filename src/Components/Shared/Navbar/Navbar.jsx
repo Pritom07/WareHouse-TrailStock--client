@@ -95,7 +95,7 @@ const Navbar = () => {
         <div className="flex items-center">
           {User ? (
             <div className="flex lg:flex-col xl:flex-row items-center">
-              <h6 className="hidden lg:block xl:text-xl lg:text-[18px] font-bold text-blue-500 mr-3 hover:scale-110">
+              <h6 className="hidden lg:block xl:text-xl lg:text-[18px] font-bold text-transparent bg-linear-65 from-purple-500 to-pink-500 bg-clip-text mr-3 hover:scale-110">
                 {name}
               </h6>
               <button
