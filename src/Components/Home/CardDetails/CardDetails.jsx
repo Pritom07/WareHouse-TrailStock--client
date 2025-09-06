@@ -1,13 +1,15 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import "./CardDetails.css";
 import { useRef, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { FaArrowLeft } from "react-icons/fa6";
 
 const CardDetails = () => {
   const data = useLoaderData();
   const amountref = useRef();
+  const navigate = useNavigate();
   const {
     _id,
     name,
@@ -92,6 +94,10 @@ const CardDetails = () => {
     amountref.current.value = " ";
   };
 
+  const handlegoback = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="scroll-smooth will-change-transform">
       <figure>
@@ -164,6 +170,15 @@ const CardDetails = () => {
             className="cursor-pointer mt-2 lg:mt-0 lg:ml-3 text-white bg-linear-to-bl from-violet-500 to-fuchsia-500 px-4 py-2 rounded-xl font-semibold active:scale-x-90"
           >
             Submit
+          </button>
+        </div>
+        <div className="flex justify-start mt-3.5">
+          <button
+            onClick={handlegoback}
+            className="bg-rose-500 text-white font-semibold px-3 py-2 rounded-xl cursor-pointer active:scale-x-95"
+          >
+            <FaArrowLeft className="inline mr-1" />
+            Go back
           </button>
         </div>
       </section>
