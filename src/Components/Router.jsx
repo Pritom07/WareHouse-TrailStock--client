@@ -36,7 +36,14 @@ const router = createBrowserRouter(
             </PrivateRoute>
           }
         ></Route>
-        <Route path="/addItem" element={<AddItem />}></Route>
+        <Route
+          path="/addItem"
+          element={
+            <PrivateRoute>
+              <AddItem />
+            </PrivateRoute>
+          }
+        ></Route>
         <Route path="/myItems" element={<MyItems />}></Route>
         <Route path="/blogs" element={<QnA />}></Route>
       </Route>
