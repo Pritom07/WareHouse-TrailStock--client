@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import Swal from "sweetalert2";
+import api from "../../../../API/axiosInstance";
 
 const SignIn = () => {
   const [seePass, setSeePass] = useState(false);
@@ -144,24 +145,31 @@ const SignIn = () => {
           return;
         }
 
-        axios
-          .patch("http://localhost:3000/users", userData)
+        api
+          .post("/jwt", { email })
           .then((res) => {
-            if (res.data.modifiedCount > 0) {
-              toast.success("Welcome for Signing In , Sir !", {
-                style: {
-                  backgroundColor: "#4CAF50",
-                  color: "white",
-                },
-              });
-            }
-            {
-              location?.state ? navigate(location?.state) : navigate("/");
+            if (res.data.success === true) {
+              return api
+                .patch("/users", userData)
+                .then((res) => {
+                  if (res.data.modifiedCount > 0) {
+                    toast.success("Welcome for Signing In , Sir !", {
+                      style: {
+                        backgroundColor: "#4CAF50",
+                        color: "white",
+                      },
+                    });
+                  }
+                  {
+                    location?.state ? navigate(location?.state) : navigate("/");
+                  }
+                })
+                .catch((err) => {
+                  toast.error(err.message);
+                });
             }
           })
-          .catch((err) => {
-            toast.error(err.message);
-          });
+          .catch((err) => toast.error(err.message));
       })
       .catch((err) => {
         toast.error(
