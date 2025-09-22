@@ -1,13 +1,13 @@
 import useAuth from "../Context_&_Observer/useAuth";
 import { useLottie } from "lottie-react";
-import addCardLottie from "/public/addCardLottie";
+import addCardLottie from "/src/addCardLottie";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const AddItem = () => {
-  const { User } = useAuth();
+  const { User, githubID } = useAuth();
   const navigate = useNavigate();
 
   const options = {
@@ -40,6 +40,7 @@ const AddItem = () => {
       supplier,
       description,
       addedByEmail,
+      githubID,
     };
 
     axios

@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import useAuth from "../Context_&_Observer/useAuth";
-import axios from "axios";
 import MyItemCard from "./MyItemCard";
 import Loader from "../Loader/Loader";
+import api from "../../../API/axiosInstance";
 
 const MyItems = () => {
-  const { User } = useAuth();
+  const { User, githubID } = useAuth();
   const [emailOrientedItems, setEmailOrientedItems] = useState([]);
   const [showItem, setShowItem] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/allinventories?email=${User?.email}`)
+    api
+      .get(`/allinventories?email=${User?.email}&githubID=${githubID}`)
       .then((res) => setEmailOrientedItems(res.data));
-  }, [User?.email]);
+  }, [User?.email, githubID]);
 
   useEffect(() => {
     const timer = setTimeout(() => {

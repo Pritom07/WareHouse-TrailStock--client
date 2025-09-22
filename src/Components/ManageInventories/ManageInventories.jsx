@@ -3,8 +3,8 @@ import InventoryCard from "../Home/InventoryCard/InventoryCard";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Loader from "../Loader/Loader";
+import api from "../../../API/axiosInstance";
 
 const ManageInventories = () => {
   const [inventoryItems, setInventoryItems] = useState([]);
@@ -54,10 +54,8 @@ const ManageInventories = () => {
   }, []);
 
   useEffect(() => {
-    axios
-      .get(
-        `http://localhost:3000/allinventories?page=${currentPage}&size=${itemsPerPage}`
-      )
+    api
+      .get(`allinventories?page=${currentPage}&size=${itemsPerPage}`)
       .then((res) => {
         setInventoryItems(res.data);
         setitems(res.data);

@@ -8,6 +8,7 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../Context_&_Observer/useAuth";
 import { toast } from "react-toastify";
+import api from "../../../../API/axiosInstance";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
@@ -21,12 +22,22 @@ const Navbar = () => {
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
-        toast.success(`Thanks ${User?.displayName} for visiting us !`, {
-          style: {
-            backgroundColor: "#4CAF50",
-            color: "white",
-          },
-        });
+        api
+          .post("/logout")
+          .then((res) => {
+            if (res.data.success === true) {
+              toast.success(`Thanks ${User?.displayName} for visiting us !`, {
+                style: {
+                  backgroundColor: "#4CAF50",
+                  color: "white",
+                },
+              });
+              navigate("/");
+            }
+          })
+          .catch((err) => {
+            toast.error(err.message);
+          });
       })
       .catch((err) => {
         toast.error(err.message, {

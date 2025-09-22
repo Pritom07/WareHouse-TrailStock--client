@@ -16,6 +16,7 @@ import auth from "../firebase.init";
 const Authprovider = ({ children }) => {
   const [User, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [githubID, setGithubID] = useState(null);
 
   const createAccount = (email, password) => {
     setLoading(true);
@@ -78,6 +79,8 @@ const Authprovider = ({ children }) => {
     signInWithGithub,
     passwordResetting,
     verifyEmail,
+    githubID,
+    setGithubID,
   };
 
   return <ThemeContext.Provider value={info}>{children}</ThemeContext.Provider>;

@@ -1,14 +1,14 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: "http://localhost:3000",
   withCredentials: true,
 });
 
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.status.response === 401) {
+    if (error?.response?.status === 401) {
       window.location.href = "/auth/signIn";
     }
     return Promise.reject(error);

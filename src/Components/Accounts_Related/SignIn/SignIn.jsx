@@ -10,7 +10,6 @@ import "./SignIn.css";
 import { useRef, useState } from "react";
 import useAuth from "../../Context_&_Observer/useAuth";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import Swal from "sweetalert2";
 import api from "../../../../API/axiosInstance";
@@ -23,6 +22,8 @@ const SignIn = () => {
     signInWithGoogle,
     signInWithGithub,
     passwordResetting,
+    setGithubID,
+    githubID,
   } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -40,23 +41,39 @@ const SignIn = () => {
         const method = "Google_Sign_In";
         const userData = { name, email, lastSignInTime, creationTime, method };
 
-        axios
-          .put("http://localhost:3000/users", userData)
+        // axiosInstance used here
+        api
+          .post("/jwt", { email })
           .then((res) => {
-            if (res.data.modifiedCount > 0 || res.data.upsertedCount > 0) {
-              toast.success("Welcome for Signing In , Sir !", {
-                style: {
-                  backgroundColor: "#4CAF50",
-                  color: "white",
-                },
-              });
-            }
-            {
-              location?.state ? navigate(location?.state) : navigate("/");
+            if (res.data.success === true) {
+              return api
+                .put("/users", userData)
+                .then((res) => {
+                  if (
+                    res.data.modifiedCount > 0 ||
+                    res.data.upsertedCount > 0
+                  ) {
+                    toast.success("Welcome for Signing In , Sir !", {
+                      style: {
+                        backgroundColor: "#4CAF50",
+                        color: "white",
+                      },
+                    });
+                  }
+                  location?.state ? navigate(location?.state) : navigate("/");
+                })
+                .catch((err) => {
+                  toast.error(err.message);
+                });
             }
           })
           .catch((err) => {
-            toast.error(err.message);
+            toast.error(err.message, {
+              style: {
+                backgroundColor: "red",
+                color: "white",
+              },
+            });
           });
       })
       .catch((err) => {
@@ -75,6 +92,7 @@ const SignIn = () => {
         const user = result.user;
         const name = user.displayName;
         const github_User_Id = user.providerData[0].uid;
+        setGithubID(github_User_Id);
         const photoURL = user.photoURL;
         const lastSignInTime = user.metadata.lastSignInTime;
         const creationTime = user.metadata.creationTime;
@@ -88,23 +106,39 @@ const SignIn = () => {
           method,
         };
 
-        axios
-          .put("http://localhost:3000/users", userData)
+        // axiosInstance used here
+        api
+          .post("/jwt", { githubID })
           .then((res) => {
-            if (res.data.modifiedCount > 0 || res.data.upsertedCount > 0) {
-              toast.success("Welcome for Signing In , Sir !", {
-                style: {
-                  backgroundColor: "#4CAF50",
-                  color: "white",
-                },
-              });
-            }
-            {
-              location?.state ? navigate(location?.state) : navigate("/");
+            if (res.data.success === true) {
+              return api
+                .put("/users", userData)
+                .then((res) => {
+                  if (
+                    res.data.modifiedCount > 0 ||
+                    res.data.upsertedCount > 0
+                  ) {
+                    toast.success("Welcome for Signing In , Sir !", {
+                      style: {
+                        backgroundColor: "#4CAF50",
+                        color: "white",
+                      },
+                    });
+                  }
+                  location?.state ? navigate(location?.state) : navigate("/");
+                })
+                .catch((err) => {
+                  toast.error(err.message);
+                });
             }
           })
           .catch((err) => {
-            toast.error(err.message);
+            toast.error(err.message, {
+              style: {
+                backgroundColor: "red",
+                color: "white",
+              },
+            });
           });
       })
       .catch((err) => {
@@ -127,7 +161,7 @@ const SignIn = () => {
     signInAccount(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        const email = user.email;
+        const email = user?.email;
         const lastSignInTime = user.metadata.lastSignInTime;
         const method = "Email_Password";
         const userData = { email, password, lastSignInTime, method };
@@ -145,8 +179,9 @@ const SignIn = () => {
           return;
         }
 
+        // axios instance used here
         api
-          .post("/jwt", { email })
+          .post("/jwt", { email: email })
           .then((res) => {
             if (res.data.success === true) {
               return api
@@ -160,9 +195,7 @@ const SignIn = () => {
                       },
                     });
                   }
-                  {
-                    location?.state ? navigate(location?.state) : navigate("/");
-                  }
+                  location?.state ? navigate(location?.state) : navigate("/");
                 })
                 .catch((err) => {
                   toast.error(err.message);
