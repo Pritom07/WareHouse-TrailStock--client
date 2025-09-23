@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import HomeInventoryItems from "../HomeInventoryItems/HomeInventoryItems";
 import { useEffect, useState } from "react";
+import Chart from "../Chart/Chart";
 
 const InventoryOverview = () => {
   const variant1 = {
@@ -65,6 +66,7 @@ const InventoryOverview = () => {
         </motion.div>
       )}
       <HomeInventoryItems />
+      <Chart />
     </div>
   );
 };
