@@ -4,12 +4,16 @@
 /* Importing google font Great Vibes */
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 
+/* importing google font Pacifico */
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
 @import "tailwindcss";
 @plugin "daisyui";
 
 @theme {
   --font-bebas: "Merriweather", serif;
   --font-vibes: "Great Vibes", cursive;
+  --font-pacifico: "Pacifico", cursive;
 }
 
 body,

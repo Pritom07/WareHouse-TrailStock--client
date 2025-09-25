@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import HomeInventoryItems from "../HomeInventoryItems/HomeInventoryItems";
 import { useEffect, useState } from "react";
 import Chart from "../Chart/Chart";
+import Timeline from "../Timeline/Timeline";
 
 const InventoryOverview = () => {
   const variant1 = {
@@ -66,6 +67,7 @@ const InventoryOverview = () => {
         </motion.div>
       )}
       <HomeInventoryItems />
+      <Timeline />
       <Chart />
     </div>
   );

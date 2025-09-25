@@ -23,7 +23,7 @@ const Chart = () => {
 
   return (
     <section>
-      <h1 className="text-center font-semibold text-xl sm:text-2xl md:text-3xl xl:text-4xl mt-4 font-bebas">
+      <h1 className="text-center font-semibold text-xl sm:text-2xl md:text-3xl xl:text-4xl mt-8 font-bebas">
         An Overview of Name Vs Price & Sold Items
       </h1>
       <div
