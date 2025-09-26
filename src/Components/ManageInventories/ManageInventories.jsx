@@ -48,7 +48,7 @@ const ManageInventories = () => {
   const pagesArray = [...Array(no_of_pages).keys()];
 
   useEffect(() => {
-    fetch("http://localhost:3000/totalDoc")
+    fetch("https://warehouse-server-mu.vercel.app/totalDoc")
       .then((res) => res.json())
       .then((data) => setTotDocument(data));
   }, []);

@@ -18,7 +18,7 @@ const MyItemCard = ({ item, emailOrientedItems, setEmailOrientedItems }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3000/item/${_id}`).then((res) => {
+        axios.delete(`https://warehouse-server-mu.vercel.app/item/${_id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             Swal.fire({
               title: "Deleted!",

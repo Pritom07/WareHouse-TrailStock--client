@@ -44,7 +44,7 @@ const AddItem = () => {
     };
 
     axios
-      .post("http://localhost:3000/items", updatedData)
+      .post("https://warehouse-server-mu.vercel.app/items", updatedData)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

@@ -12,7 +12,7 @@ const HomeInventoryItems = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/items")
+      .get("https://warehouse-server-mu.vercel.app/items")
       .then((res) => setInventoryitems(res.data));
   }, []);
 

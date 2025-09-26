@@ -28,7 +28,9 @@ const router = createBrowserRouter(
         <Route
           path="/inventory/:id"
           loader={({ params }) =>
-            fetch(`http://localhost:3000/inventoryDetails/${params.id}`)
+            fetch(
+              `https://warehouse-server-mu.vercel.app/inventoryDetails/${params.id}`
+            )
           }
           element={
             <PrivateRoute>

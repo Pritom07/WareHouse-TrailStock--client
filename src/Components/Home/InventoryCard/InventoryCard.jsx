@@ -32,18 +32,20 @@ const InventoryCard = ({ cardItem, show, items, setitems }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3000/item/${id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
-              confirmButtonColor: "#4CAF50",
-            });
-            const newItemsArray = items.filter((item) => item._id !== id);
-            setitems(newItemsArray);
-          }
-        });
+        axios
+          .delete(`https://warehouse-server-mu.vercel.app/item/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+                confirmButtonColor: "#4CAF50",
+              });
+              const newItemsArray = items.filter((item) => item._id !== id);
+              setitems(newItemsArray);
+            }
+          });
       }
     });
   };

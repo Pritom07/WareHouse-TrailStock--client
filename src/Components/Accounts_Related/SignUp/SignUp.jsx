@@ -67,7 +67,7 @@ const SignUp = () => {
 
         verifyEmail().then(() => {});
 
-        fetch("http://localhost:3000/users", {
+        fetch("https://warehouse-server-mu.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

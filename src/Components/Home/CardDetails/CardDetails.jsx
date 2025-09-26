@@ -27,33 +27,37 @@ const CardDetails = () => {
   const [clicked, setClicked] = useState(false);
 
   const handleQuantity = (id) => [
-    axios.post(`http://localhost:3000/items/${id}`).then((res) => {
-      if (res.data.modifiedCount > 0) {
-        axios
-          .get(`http://localhost:3000/inventoryDetails/${id}`)
-          .then((res) => {
-            setQuantity(res.data.quantity);
-            setSold(res.data.sold);
-            setClicked(true);
-          });
+    axios
+      .post(`https://warehouse-server-mu.vercel.app/items/${id}`)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          axios
+            .get(
+              `https://warehouse-server-mu.vercel.app/inventoryDetails/${id}`
+            )
+            .then((res) => {
+              setQuantity(res.data.quantity);
+              setSold(res.data.sold);
+              setClicked(true);
+            });
 
-        Swal.fire({
-          title: "Quantity and Sold Updated!",
-          icon: "success",
-          draggable: true,
-          confirmButtonColor: "#4CAF50",
-          confirmButtonText: "Done",
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Product is out of stock!",
-          confirmButtonColor: "#F44336",
-          confirmButtonText: "Ok",
-        });
-      }
-    }),
+          Swal.fire({
+            title: "Quantity and Sold Updated!",
+            icon: "success",
+            draggable: true,
+            confirmButtonColor: "#4CAF50",
+            confirmButtonText: "Done",
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Product is out of stock!",
+            confirmButtonColor: "#F44336",
+            confirmButtonText: "Ok",
+          });
+        }
+      }),
   ];
 
   const handleRestock = (id) => {
@@ -71,11 +75,16 @@ const CardDetails = () => {
       return;
     } else {
       axios
-        .patch(`http://localhost:3000/items/${id}`, updatedData)
+        .patch(
+          `https://warehouse-server-mu.vercel.app/items/${id}`,
+          updatedData
+        )
         .then((res) => {
           if (res.data.modifiedCount > 0) {
             axios
-              .get(`http://localhost:3000/inventoryDetails/${id}`)
+              .get(
+                `https://warehouse-server-mu.vercel.app/inventoryDetails/${id}`
+              )
               .then((res) => {
                 setQuantity(res.data.quantity);
                 setClicked(true);
