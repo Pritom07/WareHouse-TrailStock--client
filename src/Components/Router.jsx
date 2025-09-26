@@ -23,7 +23,11 @@ const router = createBrowserRouter(
         <Route index element={<Home />}></Route>
         <Route
           path="/manageInventories"
-          element={<ManageInventories />}
+          element={
+            <PrivateRoute>
+              <ManageInventories />
+            </PrivateRoute>
+          }
         ></Route>
         <Route
           path="/inventory/:id"
@@ -46,7 +50,14 @@ const router = createBrowserRouter(
             </PrivateRoute>
           }
         ></Route>
-        <Route path="/myItems" element={<MyItems />}></Route>
+        <Route
+          path="/myItems"
+          element={
+            <PrivateRoute>
+              <MyItems />
+            </PrivateRoute>
+          }
+        ></Route>
         <Route path="/blogs" element={<QnA />}></Route>
       </Route>
 
